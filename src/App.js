@@ -1,16 +1,10 @@
-import Head from "next/head";
+import Map from "./components/Map";
+import Sidenav from "./components/Sidenav";
+import Header from "./components/Header";
 
-import Header from "../components/Header";
-import Map from "../components/Map";
-import Sidenav from "../components/Sidenav";
-
-export default function Home() {
+function App() {
   return (
     <>
-      <Head>
-        <title>Covid cases</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <div className="flex text-gray-600">
         <div className="hidden md:w-1/3 md:block lg:w-1/6">
           <Sidenav />
@@ -23,3 +17,5 @@ export default function Home() {
     </>
   );
 }
+
+export default App;
