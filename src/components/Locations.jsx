@@ -1,18 +1,24 @@
-import { useRecoilValue } from "recoil";
+import {useState} from "react";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
-import locationsState from "../_state/atoms/locationsState";
-import React from "react";
+import locationsState from "../_state/atoms/locationsState";  
+import selectedLocationState from "../_state/selectors/selectedLocationState";
+import Location from "./Location";
 
 function Locations() {
   const locations = useRecoilValue(locationsState);
-  console.log(locations);
+  const setValue = useSetRecoilState(selectedLocationState());
+  const [selected, setSelected] = useState('');
+  
+  const handleClick = (val) =>{
+    setSelected(val);
+    setValue(val); 
+  }
 
   return (
       <div className="divide-y divide-blue-100">
         {locations.map((loc) => (
-          <div className="p-3 cursor-pointer hover:bg-gray-100" key={loc.uid}>
-            {loc.admin2}, {loc.provinceState}
-          </div>
+          <Location key={loc.uid} loc={loc} handleClick={() => handleClick(loc.uid)} selected={selected} />
         ))}
       </div> 
   );
