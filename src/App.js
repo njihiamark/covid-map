@@ -1,3 +1,5 @@
+import React from "react";
+
 import Map from "./components/Map";
 import Sidenav from "./components/Sidenav";
 import Header from "./components/Header";
@@ -11,7 +13,9 @@ function App() {
         </div>
         <div className="w-full md:w-2/3 lg:w-5/6 h-screen">
           <Header />
-          <Map />
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <Map />
+          </React.Suspense>
         </div>
       </div>
     </>
