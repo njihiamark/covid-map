@@ -54,7 +54,7 @@ Inside this folder, we have our React components and test files associated with 
 4. I sourced for another endpoint online but some of the data did not have geo-data, so I had to limit the app to use 100 entries for it not to break the app. Here is the [link to the endpoint](https://covid19.mathdro.id/api/countries/USA/confirmed) I used.
 5. Also from the above endpoint, all the recovered case were null. It's pretty worrying but perhaps it is hard to monitor recovery.
 6. The map is kinda slow to load on larger screens when zooming in
-7. I could not complete in a day
+7. I could not complete the challenge in a day
 
 But despite the above, I really enjoyed this. Thank you for sharing this.
 
