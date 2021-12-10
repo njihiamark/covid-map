@@ -1,5 +1,4 @@
-import { useCallback } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { SearchIcon } from "@heroicons/react/solid";
 import debounce from "lodash.debounce";
 
@@ -10,9 +9,7 @@ function FilterLocations() {
   const searchHandler = (event) => {
     setValue(event.target.value)
   };
-  const debouncedEventHandler = useCallback(
-    debounce(searchHandler, 300)
-  , []);
+  const debouncedEventHandler = debounce(searchHandler, 500);
 
   
   return (

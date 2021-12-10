@@ -22,7 +22,7 @@ function Locations() {
     if(locations.length === 0){
       mapRef.flyTo([37.1, -101.3], 5);
     }
-  }, [locations])
+  }, [locations, mapRef])
 
   return (
     <div className="divide-y divide-blue-100">
