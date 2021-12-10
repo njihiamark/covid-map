@@ -5,7 +5,7 @@ const locationStatsState = selector({
   key: "fetchLocationsState",
   get: async () => {
       const response = await mathdroAxios.getData("countries/USA/confirmed");
-      return response.data;
+      return response.data ? response.data.slice(0, 100) : [];
   },
 });
 
