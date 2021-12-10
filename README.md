@@ -49,7 +49,7 @@ Inside this folder, we have our React components and test files associated with 
 
 # Short-comings experienced
 1. I only wrote one test
-2. I had to learn to use a new state management library
+2. I had to learn how to use a new state management library
 3. The API payload from the challenge document returned a 404 at the time of doing the test [here is the link](https://www.trackcorona.live/api)
 4. I sourced for another endpoint online but some of the data did not have geo-data, so I had to limit the app to use 100 entries for it not to break the app. Here is the [link to the endpoint](https://covid19.mathdro.id/api/countries/USA/confirmed) I used.
 5. Also from the above endpoint, all the recovered case were null. It's pretty worrying but perhaps it is hard to monitor recovery.
