@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# COVID TRACKER APP CHALLENGE
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a small application to visualize COVID-19 presence in the United States.
 
-## Available Scripts
 
-In the project directory, you can run:
+# TECHNOLOGIES USED
 
-### `npm start`
+The technologies used were:-
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+ - **Create React App**
+ - **Recoil**
+ - **Tailwind**
+ - **React Leaflet**
+ - **React Testing Library**
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Reasons behind the above choices
+I initially started this on **Next.js** but later switched to **Create React App** because I had encountered some challenges with **Next.js** not supporting **React Suspense** and had some state inconsistencies due to **SSR** when one reloaded the page. Thus, I switched to **Create React App** to test **Recoil** better. 
 
-### `npm test`
+I went for **Recoil** instead of **Redux** because during the weekend I saw **[this video](https://www.youtube.com/watch?v=_ISAA_Jt9kI/)** and from Dave's explanation, it seemed like a great choice since it feels like you are still writing **React** and it seemed reasonably practical to use and has very minimal boilerplate. This challenge provided the best testing environment for it since maps applications mostly have complex state needs. I must say I was impressed by **Recoil**. It deserves some consideration when it comes to state management for complex apps.  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+I used **Tailwind** since it is really close to writing raw **CSS** thus it feels more flexible than **Bootstrap**. I think for large projects it is really beneficial as your **CSS** footprint doesn't grow compared to the other tools out there. Secondly, it has the option to turn off the utilities you don't need if you are aggressive with keeping the footprint extra small. Thirdly, it has a nice developer experience due to the IntelliSense plugin they have on given IDEs/editors.
 
-### `npm run build`
+For maps, I went for **React  Leaflet**. It is easy to use and doesn't require you to register or get some keys to get started. It is a marvellous library to work with out of the box.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+When it came to testing, I used **React Testing Library**, its philosophy of testing DOM nodes makes much sense as you are testing how the user interacts with the application instead of implementation. When used together with **Recoil**, it works well for user-initiated events but when testing some scenarios like async stuff like when data loads when a component has mounted it is best to test the data stores themselves as implied [here in their docs.](https://recoiljs.org/docs/guides/testing/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Project Structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+I partitioned the application into the following major areas inside the src folder:-
 
-### `npm run eject`
+ 1. _services
+ 2. _state
+ 3. components
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+I will discuss each of the above in the following sections.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 1. _services
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Inside this folder we have helper methods. For example, Axios factories can be found here.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 2. _state
 
-## Learn More
+Inside this folder, we have stuff related to Recoil for app-wide state management. We have the **atoms** folder, the atoms are our sources of truth and the **selectors** folder, the selectors represent pieces of derived state. It is from the selectors we fetch external data and derive state from atoms and other selectors. A good example of this is filtering something from the state. Components can subscribe to both atoms and selectors. 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 3. components
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Inside this folder, we have our React components and test files associated with them. 
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Short-comings experienced
+1. I only wrote one test
+2. I had to learn to use a new state management library
+3. The API payload from the challenge document returned a 404 at the time of doing the test [here is the link](https://www.trackcorona.live/api)
+4. I sourced for another endpoint online but some of the data did not have geo-data, so I had to limit the app to use 100 entries for it not to break the app. Here is the [link to the endpoint](https://covid19.mathdro.id/api/countries/USA/confirmed) I used.
+5. The map is kinda slow to load on larger screens when zooming in
 
-### Analyzing the Bundle Size
+But despite the above, I really enjoyed this. Thank you for sharing this.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# Demo
 
-### Making a Progressive Web App
+The demo to this application is hosted on Vervel.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+You can view the demo of the app **[here](https://covid-map-eta.vercel.app/)**
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Thank you!!
